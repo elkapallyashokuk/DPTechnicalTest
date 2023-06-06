@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 
-
 namespace DPTechnicalTest.Pages
 {
     internal class CartPage : BasePage
@@ -9,38 +8,29 @@ namespace DPTechnicalTest.Pages
         {
         }
         private IWebElement UI_AddToCart_Button_FlyingNinja => Driver.FindElement(By.CssSelector("a[aria-label='Add “Flying Ninja” to your cart']"));
-
         private IWebElement UI_AddToCart_Button_NinjaSilhouette => Driver.FindElement(By.XPath("//a[@aria-label='Add “Ninja Silhouette” to your cart']"));
         private IWebElement UI_AddToCart_Button_ShipYourIdea => Driver.FindElement(By.XPath("//a[@aria-label='Add “Ship Your Idea” to your cart']"));
 
         private IWebElement UI_AddToCart_Button_PatientNinja => Driver.FindElement(By.XPath("//a[@aria-label='Add “Patient Ninja” to your cart']"));
-   
+
         private IWebElement UI_Cart_Button => Driver.FindElement(By.XPath("  //a[text()='Cart']"));
-
-        private IWebElement UI_CartUpdateMessage_Element => Driver.FindElement(By.CssSelector("div.woocommerce-message"));
-
-        private IWebElement UI_RemoveItem_Button => Driver.FindElement(By.XPath("//tbody/tr[3]/td[1]/a[1]"));
-    
+      
+        private IWebElement UI_RemoveItem_Button => Driver.FindElement(By.XPath("//a[@data-product_id='54']"));
+        
         internal void NavigateToHome()
         {
             Driver.Navigate().GoToUrl(AppConfigReader.GetUrl);
         }
-
         public void AddToCart()
         {
-
-            Thread.Sleep(2000);
             UI_AddToCart_Button_FlyingNinja.Click();
-            Thread.Sleep(2000);
             UI_AddToCart_Button_NinjaSilhouette.Click();
-            Thread.Sleep(2000);
-            UI_AddToCart_Button_PatientNinja.Click();
-            Thread.Sleep(2000);
+            UI_AddToCart_Button_PatientNinja.Click();  
             UI_AddToCart_Button_ShipYourIdea.Click();
         }
         public void ViewCart()
         {
-            UI_Cart_Button.Click();      
+            UI_Cart_Button.Click();
         }
         public IList<IWebElement> GetCartProductRows()
         {
@@ -68,7 +58,6 @@ namespace DPTechnicalTest.Pages
             {
                 return price;
             }
-
             // Return a default value if the price couldn't be parsed
             return 0;
         }
@@ -76,9 +65,11 @@ namespace DPTechnicalTest.Pages
         public void RemoveLowestPriceItemFromCart()
         {
             UI_RemoveItem_Button.Click();
-            }
+            Thread.Sleep(3000);
+            
         }
     }
+}
 
 
     
