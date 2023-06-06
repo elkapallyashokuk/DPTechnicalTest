@@ -1,5 +1,7 @@
 ﻿Feature: Verify cart functionality
 
+
+@Sample
 Scenario: Add items to the cart and verify the count
     Given I am on the shopping website
     When I Add four items to cart
